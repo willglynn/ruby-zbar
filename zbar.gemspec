@@ -31,8 +31,8 @@ Gem::Specification.new do |s|
      "test/helper.rb",
      "test/test.jpg",
      "test/test.pgm",
-     "test/test.png",
-     "test/test_zbar.rb"
+     "test/test_zbar.rb",
+     "zbar.gemspec"
   ]
   s.homepage = %q{http://github.com/delta407/ruby-zbar}
   s.rdoc_options = ["--charset=UTF-8"]
