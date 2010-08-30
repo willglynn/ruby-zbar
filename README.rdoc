@@ -1,6 +1,48 @@
 = zbar
+by Will Glynn
 
-Description goes here.
+http://github.com/delta407/ruby-zbar
+
+== DESCRIPTION:
+
+Ruby bindings for ZBar, a barcode recognition library.
+
+== SYNOPSIS:
+
+  require 'zbar'
+  
+  ZBar::Image.from_jpeg(File.read('test.jpg')).process
+  => [#<Zbar::Symbol:0x10147c668
+    @addon="",
+    @data="9876543210128",
+    @location= [...],
+    @quality=15,
+    @symbology="EAN-13">]
+
+== REQUIREMENTS:
+
+* FFI
+* ZBar, probably 0.10 or more
+
+ZBar can be obtained from http://zbar.sourceforge.net.
+
+== DOWNLOAD/INSTALL:
+
+From gemcutter:
+
+  [sudo] gem install zbar
+  
+From github:
+
+  git clone git://github.com/delta407/ruby-zbar.git
+  cd ruby-zbar
+  rake install
+
+== LIMITATIONS:
+
+Doesn't expose all ZBar functionality, including:
+* No video functions
+* No low-level interfaces (scanner, decoder)
 
 == Note on Patches/Pull Requests
  
