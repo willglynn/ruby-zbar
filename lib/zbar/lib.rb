@@ -1,6 +1,18 @@
 module ZBar
   extend FFI::Library
-  ffi_lib 'zbar'
+
+  paths =
+    Array(
+      ENV['ZBAR_LIB'] ||
+      Dir['/{opt,usr}/{,local/}lib{,64}/libzbar.{dylib,so*}']
+      )
+  begin
+    ffi_lib(*paths)
+  rescue LoadError => le
+    raise LoadError,
+      "didn't find libzbar on your system. " +
+      "Please install zbar (http://zbar.sourceforge.net/)"
+  end
   
   attach_function :zbar_symbol_get_type, [:pointer], :int
   attach_function :zbar_symbol_get_data, [:pointer], :string
