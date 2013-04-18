@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
      "test/test_zbar.rb",
      "zbar.gemspec"
   ]
-  s.homepage = %q{http://github.com/delta407/ruby-zbar}
+  s.homepage = %q{http://github.com/willglynn/ruby-zbar}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}

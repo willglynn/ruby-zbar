@@ -1,7 +1,7 @@
 = zbar
 by Will Glynn
 
-http://github.com/delta407/ruby-zbar
+http://github.com/willglynn/ruby-zbar
 
 == DESCRIPTION:
 
@@ -56,4 +56,4 @@ Doesn't expose all ZBar functionality, including:
 
 == Copyright
 
-Copyright (c) 2010 Will Glynn. See LICENSE for details.
+Copyright (c) 2010-2013 Will Glynn. See LICENSE for details.
