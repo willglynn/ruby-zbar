@@ -37,10 +37,17 @@ module ZBar
     # http://netpbm.sourceforge.net/doc/pgm.html.
     def self.from_pgm(io_or_string)
       if io_or_string.respond_to?(:read)
-        io_or_string = io_or_string.read
+        string = io_or_string.read
+      else
+        string = io_or_string
       end
       
-      image_data = io_or_string.gsub(/^(P5)\s([0-9]+)\s([0-9]+)\s([0-9]+)\s/, '')
+      # Ensure we're in binary mode
+      if string.respond_to? :force_encoding
+        string.force_encoding 'binary'
+      end
+      
+      image_data = string.gsub(/^(P5)\s([0-9]+)\s([0-9]+)\s([0-9]+)\s/, '')
       if $1 != 'P5'
         raise ArgumentError, "input must be a PGM file"
       end

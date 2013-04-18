@@ -1,17 +1,25 @@
 require 'helper'
 
-Path = File.dirname(__FILE__)
-
 class TestZBar < Test::Unit::TestCase
+  def file_path(filename)
+    File.dirname(__FILE__) + "/" + filename
+  end
+
+  def read(filename)
+    File.open(file_path(filename)) { |f|
+      f.read
+    }
+  end
+  
   should "read the right barcode from a PGM blob" do
-    result = ZBar::Image.from_pgm(File.read("#{Path}/test.pgm")).process
+    result = ZBar::Image.from_pgm(read("test.pgm")).process
     assert_equal(result.size, 1)
     assert_equal(result[0].data, '9876543210128')
     assert_equal(result[0].symbology, 'EAN-13')
   end
   
   should "read a barcode from a PGM file" do
-    File.open("#{Path}/test.pgm") { |f|
+    File.open(file_path("test.pgm"), 'rb') { |f|
       result = ZBar::Image.from_pgm(f).process
       assert_equal(result.size, 1)
     }
@@ -19,7 +27,7 @@ class TestZBar < Test::Unit::TestCase
 
   should "be able to re-use a processor" do
     processor = ZBar::Processor.new
-    pgm = File.read("#{Path}/test.pgm")
+    pgm = read("test.pgm")
     
     result1 = processor.process ZBar::Image.from_pgm(pgm)
     result2 = processor.process ZBar::Image.from_pgm(pgm)
@@ -29,12 +37,12 @@ class TestZBar < Test::Unit::TestCase
   end
 
   should "read a barcode from a JPEG blob" do
-    result = ZBar::Image.from_jpeg(File.read("#{Path}/test.jpg")).process
+    result = ZBar::Image.from_jpeg(read("test.jpg")).process
     assert_equal(result.size, 1)
   end
   
   should "read a barcode from a JPEG file" do
-    File.open("#{Path}/test.jpg") { |f|
+    File.open(file_path("test.jpg"), "rb") { |f|
       result = ZBar::Image.from_jpeg(f).process
       assert_equal(result.size, 1)
     }
