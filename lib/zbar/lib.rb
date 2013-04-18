@@ -9,9 +9,11 @@ module ZBar
   begin
     ffi_lib(*paths)
   rescue LoadError => le
-    raise LoadError,
-      "didn't find libzbar on your system. " +
-      "Please install zbar (http://zbar.sourceforge.net/)"
+    raise LoadError, [
+      "Didn't find libzbar on your system",
+      "Please install zbar (http://zbar.sourceforge.net/) or ZBAR_LIB if it's in a weird place",
+      "FFI::Library::ffi_lib() failed with error: #{le}"
+    ].join("\n")
   end
   
   attach_function :zbar_symbol_get_type, [:pointer], :int
