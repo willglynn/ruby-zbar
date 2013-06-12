@@ -97,11 +97,18 @@ module ZBar
     end
     
     # Attempt to recognize barcodes in this image, using the supplied processor
-    # (if any), falling back to defaults.
+    # or processor configuration (if any), falling back to defaults.
     #
     # Returns an array of ZBar::Symbol objects.
-    def process(processor = nil)
-      processor ||= Processor.new
+    def process(processor_or_config = nil)
+      if processor_or_config.respond_to?(:process)
+        processor = processor_or_config
+      elsif processor_or_config.nil?
+        processor = Processor.new
+      else
+        processor = Processor.new(processor_or_config)
+      end
+
       processor.process(self)
     end
     
