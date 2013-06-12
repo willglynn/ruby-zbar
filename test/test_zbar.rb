@@ -24,6 +24,16 @@ class TestZBar < Test::Unit::TestCase
       assert_equal(result.size, 1)
     }
   end
+  
+  should "allow setting configuration values on a processor" do
+    processor = ZBar::Processor.new
+    processor.set_config_value "qrcode.enabled=1"
+  end
+  
+  should "raise ArgumentError when given an invalid configuration value" do
+    processor = ZBar::Processor.new
+    processor.set_config_value "invalid config string"
+  end
 
   should "be able to re-use a processor" do
     processor = ZBar::Processor.new
