@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "zbar"
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Will Glynn"]
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".rspec",
     "Gemfile",
     "LICENSE",
     "README.rdoc",
@@ -28,10 +29,13 @@ Gem::Specification.new do |s|
     "lib/zbar/lib.rb",
     "lib/zbar/processor.rb",
     "lib/zbar/symbol.rb",
-    "test/helper.rb",
-    "test/test.jpg",
-    "test/test.pgm",
-    "test/test_zbar.rb",
+    "spec/spec_helper.rb",
+    "spec/support/file_helpers.rb",
+    "spec/support/test.jpg",
+    "spec/support/test.pgm",
+    "spec/zbar/image_spec.rb",
+    "spec/zbar/processor_spec.rb",
+    "spec/zbar_spec.rb",
     "zbar.gemspec"
   ]
   s.homepage = "http://github.com/delta407/ruby-zbar"
@@ -44,20 +48,23 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<ffi>, [">= 1.0.0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.12.0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.12.0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
     else
       s.add_dependency(%q<ffi>, [">= 1.0.0"])
-      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+      s.add_dependency(%q<rspec>, ["~> 2.12.0"])
+      s.add_dependency(%q<rspec>, ["~> 2.12.0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
     end
   else
     s.add_dependency(%q<ffi>, [">= 1.0.0"])
-    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
+    s.add_dependency(%q<rspec>, ["~> 2.12.0"])
+    s.add_dependency(%q<rspec>, ["~> 2.12.0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, ["~> 1.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
