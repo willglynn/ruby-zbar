@@ -38,8 +38,11 @@ module ZBar
   attach_function :zbar_processor_create, [:int], :pointer
   attach_function :zbar_processor_destroy, [:pointer], :void
   attach_function :zbar_processor_init, [:pointer, :string, :int], :int
+  attach_function :zbar_processor_set_config, [:pointer, :int, :int, :int], :int
   
   attach_function :zbar_process_image, [:pointer, :pointer], :int
+
+  attach_function :zbar_parse_config, [:string, :pointer, :pointer, :pointer], :int
 
   attach_function :zbar_set_verbosity, [:int], :void
   attach_function :zbar_get_symbol_name, [:int], :string
