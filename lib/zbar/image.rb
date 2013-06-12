@@ -104,6 +104,16 @@ module ZBar
       processor ||= Processor.new
       processor.process(self)
     end
+    
+    # Retrieve the image's width in pixels
+    def width
+      ZBar.zbar_image_get_width(@img)
+    end
+    
+    # Retrieve the image's height in pixels
+    def height
+      ZBar.zbar_image_get_height(@img)
+    end
   end
 
 end

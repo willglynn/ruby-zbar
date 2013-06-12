@@ -30,6 +30,8 @@ module ZBar
   attach_function :zbar_image_first_symbol, [:pointer], :pointer
   attach_function :zbar_image_set_format, [:pointer, :ulong], :void
   attach_function :zbar_image_convert, [:pointer, :ulong], :pointer
+  attach_function :zbar_image_get_width, [:pointer], :int
+  attach_function :zbar_image_get_height, [:pointer], :int
   attach_function :zbar_image_set_size, [:pointer, :uint, :uint], :void
   attach_function :zbar_image_set_data, [:pointer, :buffer_in, :uint, :pointer], :void
 
