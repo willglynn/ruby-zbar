@@ -17,6 +17,9 @@ module ZBar
     # and convert it into a greyscale image suitable for further processing.
     # This conversion may fail if ZBar was not built with <tt>--with-jpeg</tt>.
     def self.from_jpeg(io_or_string)
+      raise "JPEG support is not available in your copy of libzbar" unless ZBar::JPEG.available?
+      ZBar::JPEG.warn_once_if_bugged
+      
       if io_or_string.respond_to?(:read)
         io_or_string = io_or_string.read
       end
