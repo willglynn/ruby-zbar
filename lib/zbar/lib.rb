@@ -11,7 +11,7 @@ module ZBar
   rescue LoadError => le
     raise LoadError, [
       "Didn't find libzbar on your system",
-      "Please install zbar (http://zbar.sourceforge.net/) or ZBAR_LIB if it's in a weird place",
+      "Please install zbar (http://zbar.sourceforge.net/) or set ZBAR_LIB if it's in a weird place",
       "FFI::Library::ffi_lib() failed with error: #{le}"
     ].join("\n")
   end
@@ -24,7 +24,7 @@ module ZBar
   attach_function :zbar_symbol_get_loc_x, [:pointer, :uint], :int
   attach_function :zbar_symbol_get_loc_y, [:pointer, :uint], :int
   attach_function :zbar_symbol_next, [:pointer], :pointer
-    
+  
   attach_function :zbar_image_create, [], :pointer
   attach_function :zbar_image_destroy, [:pointer], :void
   attach_function :zbar_image_first_symbol, [:pointer], :pointer
@@ -34,16 +34,17 @@ module ZBar
   attach_function :zbar_image_get_height, [:pointer], :int
   attach_function :zbar_image_set_size, [:pointer, :uint, :uint], :void
   attach_function :zbar_image_set_data, [:pointer, :buffer_in, :uint, :pointer], :void
-
+  
   attach_function :zbar_processor_create, [:int], :pointer
   attach_function :zbar_processor_destroy, [:pointer], :void
   attach_function :zbar_processor_init, [:pointer, :string, :int], :int
   attach_function :zbar_processor_set_config, [:pointer, :int, :int, :int], :int
   
   attach_function :zbar_process_image, [:pointer, :pointer], :int
-
+  
   attach_function :zbar_parse_config, [:string, :pointer, :pointer, :pointer], :int
-
+  
+  attach_function :zbar_version, [:pointer, :pointer], :int
   attach_function :zbar_set_verbosity, [:int], :void
   attach_function :zbar_get_symbol_name, [:int], :string
   attach_function :zbar_get_addon_name, [:int], :string
