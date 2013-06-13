@@ -1,13 +1,13 @@
-= zbar
+= zbar {<img src="https://travis-ci.org/willglynn/ruby-zbar.png?branch=travis" alt="Build Status" />}[https://travis-ci.org/willglynn/ruby-zbar]
 by Will Glynn
 
 http://github.com/willglynn/ruby-zbar
 
-== DESCRIPTION:
+== Description:
 
 Ruby bindings for ZBar, a barcode recognition library.
 
-== SYNOPSIS:
+== Synopsis:
 
   require 'zbar'
   
@@ -19,40 +19,41 @@ Ruby bindings for ZBar, a barcode recognition library.
     @quality=15,
     @symbology="EAN-13">]
 
-== REQUIREMENTS:
+== Download/install:
 
-* FFI
-* ZBar, probably 0.10 or more
+Add to your Gemfile:
 
-ZBar can be obtained from http://zbar.sourceforge.net.
+  gem "zbar"
 
-== DOWNLOAD/INSTALL:
+Otherwise:
 
-From gemcutter:
+  $ [sudo] gem install zbar
 
-  [sudo] gem install zbar
-  
-From github:
+You'll also need the +zbar+ C library to make it work. This might be available from your package manager:
 
-  git clone git://github.com/delta407/ruby-zbar.git
-  cd ruby-zbar
-  rake install
+  $ sudo apt-get install libzbar0    # on Debian or Ubuntu
+  $ sudo emerge zbar                 # on Gentoo
+  $ brew install zbar                # on Mac OS X with Homebrew
 
-== LIMITATIONS:
+Alternately, install from source at http://zbar.sf.net/.
+
+== Limitations:
 
 Doesn't expose all ZBar functionality, including:
 * No video functions
 * No low-level interfaces (scanner, decoder)
 
-== Note on Patches/Pull Requests
+Additionally, there is a zbar <= 0.10 issue with JPEG decoding; see {lib/zbar/jpeg.rb}[https://github.com/willglynn/ruby-zbar/blob/master/lib/zbar/jpeg.rb] for more. You can check your ZBar::JPEG.bugged? status if you're curious. Otherwise, just try using it, and see if you get a warning on stderr.
+
+== Contributing
  
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
   future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Commit. Don't change +VERSION+, or if you do, do it in a separate commit.
 * Send me a pull request. Bonus points for topic branches.
+* Watch the Travis-CI build status on your pull request. Fix any problems.
 
 == Copyright
 
