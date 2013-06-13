@@ -20,7 +20,7 @@ describe ZBar::Processor do
       described_class.new(0)
     end
 
-    it "should instantiate with an hash parameter" do
+    it "should instantiate with a hash parameter" do
       described_class.new(:threads => 0)
     end
   end
