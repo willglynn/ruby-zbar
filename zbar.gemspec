@@ -42,11 +42,11 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/delta407/ruby-zbar"
   s.require_paths = ["lib"]
-  s.rubygems_version = "2.0.0"
+  s.rubygems_version = "1.8.25"
   s.summary = "Ruby bindings for ZBar, a barcode recognition library"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 4
+    s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<ffi>, [">= 1.0.0"])
