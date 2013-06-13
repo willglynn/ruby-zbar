@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Will Glynn"]
-  s.date = "2013-06-12"
+  s.date = "2013-06-13"
   s.description = "Ruby bindings for ZBar, a barcode recognition library. Uses FFI to interact with the underlying C library, but has no other dependencies."
   s.email = "will@willglynn.com"
   s.extra_rdoc_files = [
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     ".rspec",
+    ".travis.yml",
     "Gemfile",
     "LICENSE",
     "README.rdoc",
@@ -26,6 +27,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/zbar.rb",
     "lib/zbar/image.rb",
+    "lib/zbar/jpeg.rb",
     "lib/zbar/lib.rb",
     "lib/zbar/processor.rb",
     "lib/zbar/symbol.rb",
