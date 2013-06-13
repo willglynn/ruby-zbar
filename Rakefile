@@ -19,6 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.email = "will@willglynn.com"
   gem.homepage = "http://github.com/delta407/ruby-zbar"
   gem.authors = ["Will Glynn"]
+  gem.post_install_message = "\nzbar: This gem depends on the \"zbar\" C library.\n      If it's not installed, `require \"zbar\"` will fail.\n\n"
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
