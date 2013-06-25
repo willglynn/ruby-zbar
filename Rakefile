@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary = "Ruby bindings for ZBar, a barcode recognition library"
   gem.description ="Ruby bindings for ZBar, a barcode recognition library. Uses FFI to interact with the underlying C library, but has no other dependencies."
   gem.email = "will@willglynn.com"
-  gem.homepage = "http://github.com/delta407/ruby-zbar"
+  gem.homepage = "http://github.com/willglynn/ruby-zbar"
   gem.authors = ["Will Glynn"]
   gem.post_install_message = "\nzbar: This gem depends on the \"zbar\" C library.\n      If it's not installed, `require \"zbar\"` will fail.\n\n"
   # dependencies defined in Gemfile
