@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "zbar"
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Will Glynn"]
-  s.date = "2013-06-13"
+  s.date = "2013-06-25"
   s.description = "Ruby bindings for ZBar, a barcode recognition library. Uses FFI to interact with the underlying C library, but has no other dependencies."
   s.email = "will@willglynn.com"
   s.extra_rdoc_files = [
@@ -37,12 +37,13 @@ Gem::Specification.new do |s|
     "spec/support/test.jpg",
     "spec/support/test.pgm",
     "spec/zbar/image_spec.rb",
+    "spec/zbar/jpeg_spec.rb",
     "spec/zbar/library_version_spec.rb",
     "spec/zbar/processor_spec.rb",
     "spec/zbar_spec.rb",
     "zbar.gemspec"
   ]
-  s.homepage = "http://github.com/delta407/ruby-zbar"
+  s.homepage = "http://github.com/willglynn/ruby-zbar"
   s.post_install_message = "\nzbar: This gem depends on the \"zbar\" C library.\n      If it's not installed, `require \"zbar\"` will fail.\n\n"
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.25"
