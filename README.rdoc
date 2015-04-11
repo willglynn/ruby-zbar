@@ -11,7 +11,7 @@ Ruby bindings for ZBar, a barcode recognition library.
 
   require 'zbar'
   
-  ZBar::Image.from_jpeg(File.read('test.jpg')).process
+  ZBar::Image.from_jpeg(File.binread('test.jpg')).process
   => [#<Zbar::Symbol:0x10147c668
     @addon="",
     @data="9876543210128",
