@@ -4,7 +4,7 @@ module ZBar
   paths =
     Array(
       ENV['ZBAR_LIB'] ||
-      Dir['/{opt,usr}/{,local/}lib{,64}/libzbar.{dylib,so*}']
+      Dir['/{opt,usr}/{,local/}lib{,64}/{,x86_64-linux-gnu/}libzbar.{dylib,so*}']
       )
   begin
     ffi_lib(*paths)
