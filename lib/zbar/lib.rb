@@ -1,7 +1,7 @@
 module ZBar
   extend FFI::Library
 
-  search_string = '/{opt,usr}/{,local/}lib{,64}/{x86_64-linux-gnu/,i386-linux-gnu/}libzbar.{dylib,so*}'
+  search_string = '/{opt,usr}/{,local/}lib{,64}/{,x86_64-linux-gnu/,i386-linux-gnu/}libzbar.{dylib,so*}'
   paths =
     Array(
       ENV['ZBAR_LIB'] ||
