@@ -1,16 +1,18 @@
 module ZBar
   extend FFI::Library
 
+  search_string = '/{opt,usr}/{,local/}lib{,64}/{x86_64-linux-gnu/,i386-linux-gnu/}libzbar.{dylib,so*}'
   paths =
     Array(
       ENV['ZBAR_LIB'] ||
-      Dir['/{opt,usr}/{,local/}lib{,64}/libzbar.{dylib,so*}']
+      Dir[search_string]
       )
   begin
     ffi_lib(*paths)
   rescue LoadError => le
     raise LoadError, [
       "Didn't find libzbar on your system",
+      "Searched in \"#{search_string}\"",
       "Please install zbar (http://zbar.sourceforge.net/) or set ZBAR_LIB if it's in a weird place",
       "FFI::Library::ffi_lib() failed with error: #{le}"
     ].join("\n")
