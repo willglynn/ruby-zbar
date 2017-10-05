@@ -4,7 +4,7 @@ module ZBar
     # Accepts a hash of configurations
     def initialize(config = nil)
       # This function used to accept an integer refering to the number of threads
-      if config.kind_of?(Fixnum)
+      if config.kind_of?(Integer)
         config = { :threads => config }
       end
       
