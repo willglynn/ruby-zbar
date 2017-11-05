@@ -35,23 +35,23 @@ describe ZBar::Image do
         it "delegates to the passed processor" do
           processor = double("processor")
           expected_result = Object.new
-          processor.should_receive(:process).with(subject).and_return(expected_result)
+          expect(processor).to receive(:process).with(subject).and_return(expected_result)
         
-          subject.process(processor).should == expected_result
+          expect(subject.process(processor)).to eq(expected_result)
         end
 
         it "instantiates a new processor with no arguments" do
           processor = double("processor")
-          processor.should_receive(:process)
-          ZBar::Processor.should_receive(:new).with().and_return(processor)
+          expect(processor).to receive(:process)
+          expect(ZBar::Processor).to receive(:new).with(no_args).and_return(processor)
           subject.process
         end
 
         it "instantiates a new processor with configuration" do
           config_hash = { :foo => :bar }
           processor = double("processor")
-          processor.should_receive(:process)
-          ZBar::Processor.should_receive(:new).with(config_hash).and_return(processor)
+          expect(processor).to receive(:process)
+          expect(ZBar::Processor).to receive(:new).with(config_hash).and_return(processor)
           subject.process(config_hash)
         end
       end

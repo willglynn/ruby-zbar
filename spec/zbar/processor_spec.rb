@@ -3,12 +3,12 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe ZBar::Processor do
   describe "new" do
     it "calls ZBar.zbar_processor_create" do
-      ZBar.should_receive(:zbar_processor_create).and_call_original
+      expect(ZBar).to receive(:zbar_processor_create).and_call_original
       described_class.new
     end
     
     it "calls ZBar.zbar_processor_init" do
-      ZBar.should_receive(:zbar_processor_init).and_call_original
+      expect(ZBar).to receive(:zbar_processor_init).and_call_original
       described_class.new
     end
 
@@ -27,20 +27,20 @@ describe ZBar::Processor do
   
   describe "#zbar_config=" do
     it "calls ZBar.zbar_parse_config" do
-      ZBar.should_receive(:zbar_parse_config).with("disable", anything(), anything(), anything()).and_call_original
+      expect(ZBar).to receive(:zbar_parse_config).with("disable", anything(), anything(), anything()).and_call_original
       subject.zbar_config = "disable"
     end
 
     it "calls ZBar.zbar_processor_set_config" do
-      ZBar.should_receive(:zbar_processor_set_config).and_call_original
+      expect(ZBar).to receive(:zbar_processor_set_config).and_call_original
       subject.zbar_config = "disable"
     end
 
     it "calls itself repeatedly when given an array" do
       args = ["foo", :bar, 1]
-      subject.should_receive(:zbar_config=).with(args).and_call_original
+      expect(subject).to receive(:zbar_config=).with(args).and_call_original
       args.each { |arg|
-        subject.should_receive(:zbar_config=).with(arg)
+        expect(subject).to receive(:zbar_config=).with(arg)
       }
       subject.zbar_config = args
     end
@@ -56,22 +56,22 @@ describe ZBar::Processor do
     end
     
     it "raises ArgumentError for \"foo bar baz\"" do
-      lambda {
+      expect {
         subject.zbar_config = "foo bar baz"
-      }.should raise_error ArgumentError
+      }.to raise_error ArgumentError
     end
   end
   
   describe "#symbology=" do
     it "delegates to #symbologies=" do
-      subject.should_receive(:symbologies=).with(['foo'])
+      expect(subject).to receive(:symbologies=).with(['foo'])
       subject.symbology = 'foo'
     end
   end
   
   describe "#symbologies=" do
     it "enables the selected symbologies" do
-      subject.should_receive(:zbar_config=).with(["disable", "foo.enable", "bar.enable"])
+      expect(subject).to receive(:zbar_config=).with(["disable", "foo.enable", "bar.enable"])
       subject.symbologies = ['foo', :bar]
     end
   end
@@ -86,27 +86,27 @@ describe ZBar::Processor do
       
       it "finds the expected symbol" do
         symbols = subject
-        symbols.size.should == 1
+        expect(symbols.size).to eq(1)
 
         symbol = symbols[0]
-        symbol.should be_kind_of ZBar::Symbol
-        symbol.data.should == "9876543210128"
-        symbol.symbology.should == "EAN-13"
+        expect(symbol).to be_kind_of ZBar::Symbol
+        expect(symbol.data).to eq("9876543210128")
+        expect(symbol.symbology).to eq("EAN-13")
       end
       
       context "when all symbologies are disabled" do
         let(:config) { { :symbologies => [] } }
-        it { should be_empty }
+        it { is_expected.to be_empty }
       end
 
       context "when only a wrong symbology is enabled" do
         let(:config) { { :symbology => :qrcode } }
-        it { should be_empty }
+        it { is_expected.to be_empty }
       end
 
       context "when the correct symbology is enabled" do
         let(:config) { { :symbologies => ["qrcode", :ean13] } }
-        it { should_not be_empty }
+        it { is_expected.not_to be_empty }
       end
     end
   end

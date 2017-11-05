@@ -5,31 +5,31 @@ describe ZBar::JPEG do
   
   describe "available?" do
     specify "should be a boolean" do
-      (!!subject.available?).should == (subject.available?)
+      expect(!!subject.available?).to eq(subject.available?)
     end
 
     specify "should memoize the result" do
       result = Object.new
       subject.instance_variable_set(:@available, result)
-      subject.available?.should == result
+      expect(subject.available?).to eq(result)
     end
   end
 
   describe "bugged?" do
     specify "should be a boolean" do
-      (!!subject.bugged?).should == (subject.bugged?)
+      expect(!!subject.bugged?).to eq(subject.bugged?)
     end
     
     specify "should memoize the result" do
       result = Object.new
       subject.instance_variable_set(:@bugged, result)
-      subject.bugged?.should == result
+      expect(subject.bugged?).to eq(result)
     end
     
     specify "should be false if JPEG support is unavailable" do
       subject.instance_variable_set(:@bugged, nil)
-      subject.should_receive(:available?).and_return(false)
-      subject.bugged?.should == false
+      expect(subject).to receive(:available?).and_return(false)
+      expect(subject.bugged?).to eq(false)
     end
   end
 end

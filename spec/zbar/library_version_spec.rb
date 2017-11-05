@@ -11,9 +11,9 @@ describe ZBar::LibraryVersion do
   
   describe "to_s" do
     subject { library_version.to_s }
-    it { should be_kind_of String }
+    it { is_expected.to be_kind_of String }
     it "is formatted as major.minor" do
-      should == "#{major}.#{minor}"
+      is_expected.to eq("#{major}.#{minor}")
     end
   end
   
@@ -22,19 +22,19 @@ describe ZBar::LibraryVersion do
     let(:bigger_minor) { described_class.new(major, minor + 1)}
     let(:equal) { described_class.new(major, minor)}
     
-    it { should be_kind_of Comparable }
+    it { is_expected.to be_kind_of Comparable }
     
     it "compares minors" do
-      library_version.should < bigger_minor
-      bigger_minor.should > library_version
+      expect(library_version).to be < bigger_minor
+      expect(bigger_minor).to be > library_version
     end
     it "compares majors" do
-      library_version.should < bigger_major
-      bigger_major.should > library_version
+      expect(library_version).to be < bigger_major
+      expect(bigger_major).to be > library_version
     end
     it "compares equally" do
-      library_version.should == equal
-      equal.should == library_version
+      expect(library_version).to eq(equal)
+      expect(equal).to eq(library_version)
     end
   end
 end
