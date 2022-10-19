@@ -5,7 +5,8 @@ module ZBar
   paths =
     Array(
       ENV['ZBAR_LIB'] ||
-      Dir[search_string]
+      Dir[search_string] ||
+      'zbar'
       )
   begin
     ffi_lib(*paths)
