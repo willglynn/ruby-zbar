@@ -2,11 +2,12 @@ module ZBar
   extend FFI::Library
 
   search_string = '/{opt,usr}/{,local/}lib{,64}/{,x86_64-linux-gnu/,i386-linux-gnu/}libzbar.{dylib,so*}'
-  paths =
-    Array(
-      ENV['ZBAR_LIB'] ||
-      Dir[search_string]
-      )
+  paths = Dir[search_string]
+
+  if paths.empty?
+    paths = [ENV['ZBAR_LIB'] || 'zbar']
+  end
+
   begin
     ffi_lib(*paths)
   rescue LoadError => le
